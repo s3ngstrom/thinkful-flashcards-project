@@ -6,8 +6,8 @@ import NotFound from "./NotFound";
 import CreateDeck from "./decks/new/CreateDeck";
 import Study from "./decks/study/Study";
 import DrawDecks from "./decks/DrawDecks";
-import DeckAndCards from "./decks/new/DeckAndCards";
-import EditDeck from "./decks/edit/EditDeck";
+import DisplayDecks from "./decks/DisplayDecks";
+import EditDeck from "./decks/EditDeck";
 import AddCard from "./cards/AddCard";
 import EditCard from "./cards/EditCard";
 
@@ -33,7 +33,7 @@ function Home() {
         <EditCard />
       </Route>
       <Route path="/decks/:deckId">
-        <DeckAndCards />
+        <DisplayDecks />
       </Route>
       <Route>
         <NotFound />

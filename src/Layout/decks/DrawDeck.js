@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api";
 
+// renders individual deck elements on home page
 function DrawDeck({ deck }) {
   const history = useHistory();
   const handleDeckDelete = () => {
@@ -42,7 +43,6 @@ function DrawDeck({ deck }) {
         >
           <span className="oi oi-book"></span> Study
         </Link>
-        {/* <Link to={`/`} type="button" className="btn btn-lg btn-danger float-right" ><span className="oi oi-trash"></span></Link> */}
         <button
           type="button"
           onClick={handleDeckDelete}

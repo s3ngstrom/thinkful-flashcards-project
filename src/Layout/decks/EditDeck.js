@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { updateDeck, readDeck } from "../../../utils/api";
-import NavigationBar from "../../NavigationBar";
+import { updateDeck, readDeck } from "../../utils/api";
+import NavigationBar from "../NavigationBar";
 
 function EditDeck() {
   const [deckName, setDeckName] = useState("");
@@ -18,7 +18,7 @@ function EditDeck() {
       })
       .catch(() => history.push("/NotFound"));
     return () => abortController.abort();
-  }, [deckId]);
+  }, [deckId, history]);
 
   const [abortControllers, setAbortControllers] = useState([]);
   const _abortPreviousCall = () => {

@@ -25,7 +25,7 @@ function EditCard() {
         return <NotFound />;
       });
     return () => abortController.abort();
-  }, [deckId]);
+  }, [deckId, cardId]);
 
   if (!deck) {
     return <NotFound />;

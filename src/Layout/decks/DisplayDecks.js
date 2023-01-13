@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams, useRouteMatch } from "react-router-dom";
-import { deleteDeck, readDeck } from "../../../utils/api";
-import DrawCards from "./DrawCards";
-import NavigationBar from "../../NavigationBar";
-import NotFound from "../../NotFound";
+import { deleteDeck, readDeck } from "../../utils/api";
+import DrawCards from "./new/DrawCards";
+import NavigationBar from "../NavigationBar";
+import NotFound from "../NotFound";
 
-function DeckAndCards() {
+// renders all the functionality (edit/view/add cards/delete cards) and existing cards for a selected deck
+function DisplayDecks() {
   const [deck, setDeck] = useState({});
-  // const [cards,setCards]=useState([]);
   const { deckId } = useParams();
   const { url } = useRouteMatch();
   const history = useHistory();
@@ -72,4 +72,4 @@ function DeckAndCards() {
   );
 }
 
-export default DeckAndCards;
+export default DisplayDecks;
