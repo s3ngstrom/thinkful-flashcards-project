@@ -20,7 +20,7 @@ function DrawDecks(){
 
     return (
         <div>
-            <Link to={`/decks/new`} type="button" className="btn btn-lg btn-dark"><span className="oi oi-plus"></span> Create Deck</Link>
+            <Link to={`/decks/new`} type="button" className="btn btn-lg btn-success"><span className="oi oi-plus"></span> Create Deck</Link>
             {decks.map((deck,index)=><DrawDeck deck={deck} key={index}/>)}
         </div>
         

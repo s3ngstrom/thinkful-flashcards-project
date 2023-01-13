@@ -1,4 +1,4 @@
-import  React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../../utils/api";
 import NavigationBar from "../NavigationBar";
@@ -7,9 +7,9 @@ import CardFormData from "./CardFormData";
 
 function AddCard() {
   const { deckId } = useParams();
-  const [deck, setDeck] = useState({});
-  const [front, setFront] = useState("");
-  const [back, setBack] = useState("");
+  const [ deck, setDeck ] = useState({});
+  const [ front, setFront ] = useState("");
+  const [ back, setBack ] = useState("");
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -19,7 +19,7 @@ function AddCard() {
         return <NotFound />;
       });
     return () => abortController.abort();
-  }, [deckId]);
+  }, [ deckId ]);
 
   if (!deck) {
     return <NotFound />;
@@ -32,7 +32,7 @@ function AddCard() {
       back,
     };
     createCard(deckId, card)
-      .then(window.alert("New card Aded to the deck"))
+      .then(window.alert("Your new card has been added to the deck!"))
       .catch(console.log);
     setFront("");
     setBack("");
@@ -41,7 +41,7 @@ function AddCard() {
   return (
     <div>
       <NavigationBar navItems={[deck.name, "Add Card"]} />
-      <h2>{deck.name}: AddCard</h2>
+      <h2>{deck.name}: Add a Card</h2>
       <form onSubmit={handleSubmit}>
         <CardFormData
           front={front}
@@ -56,7 +56,7 @@ function AddCard() {
         >
           Done
         </Link>
-        <button type="submit" className="btn btn-primary btn-lg">
+        <button type="submit" className="btn btn-success btn-lg">
           Save
         </button>
       </form>

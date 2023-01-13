@@ -1,4 +1,4 @@
-import  React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { updateCard, readDeck } from "../../utils/api";
 import NavigationBar from "../NavigationBar";
@@ -6,21 +6,21 @@ import NotFound from "../NotFound";
 import CardFormData from "./CardFormData";
 
 function EditCard() {
-  const { deckId,cardId } = useParams();
+  const { deckId, cardId } = useParams();
   const [deck, setDeck] = useState({});
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
-  const history=useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
     readDeck(deckId, abortController.signal)
-      .then((deck)=>{
-          setDeck(deck);
-          const card=deck.cards.find((card)=>card.id===parseInt(cardId));
-          setFront(card.front);
-          setBack(card.back);
-        })
+      .then((deck) => {
+        setDeck(deck);
+        const card = deck.cards.find((card) => card.id === parseInt(cardId));
+        setFront(card.front);
+        setBack(card.back);
+      })
       .catch((e) => {
         return <NotFound />;
       });
@@ -34,22 +34,21 @@ function EditCard() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const card = {
-      id:cardId,  
+      id: cardId,
       front,
       back,
     };
     updateCard(card)
-      .then(window.alert("Card Info Was Updated"))
-      .catch(console.log).then(history.push(`/decks/${deckId}`));
-    
+      .then(window.alert("The card info was updated!"))
+      .catch(console.log)
+      .then(history.push(`/decks/${deckId}`));
   };
 
   return (
     <div>
-      <NavigationBar navItems={[deck.name, "Edit Card "+cardId]} />
-      {/* <h2>{deck.name}: AddCard</h2> */}
+      <NavigationBar navItems={[deck.name, "Edit Card " + cardId]} />
+      {/* <h2>{deck.name}: Add Card</h2> */}
       <form onSubmit={handleSubmit}>
-
         <CardFormData
           front={front}
           setFront={setFront}

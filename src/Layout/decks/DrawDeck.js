@@ -1,17 +1,21 @@
-import  React  from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api";
 
 function DrawDeck({ deck }) {
-  const history=useHistory();  
+  const history = useHistory();
   const handleDeckDelete = () => {
     if (
-      window.confirm("Delete This Deck?\n\nDeck will be deleted permanently")
+      window.confirm(
+        "Delete This Deck?\n\nThis deck will be deleted permanently. Select OK to proceed."
+      )
     ) {
-      deleteDeck(deck.id).then(() => {
-        history.push("/NotFound");
-        history.push("/");
-      }).catch((e)=>{
+      deleteDeck(deck.id)
+        .then(() => {
+          history.push("/NotFound");
+          history.push("/");
+        })
+        .catch((e) => {
           history.push("/NotFound");
         });
     }

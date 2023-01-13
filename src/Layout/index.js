@@ -8,7 +8,7 @@ import Home from "./Home";
 function Layout() {
   return (
     <div className="container">
-      {/* TODO: Implement the screen starting here */}
+      {/* Complete: Implement the screen starting here */}
       <Header />
       <Switch>
         <Route path="/">

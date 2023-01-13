@@ -1,4 +1,4 @@
-import  React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams, useRouteMatch } from "react-router-dom";
 import { deleteDeck, readDeck } from "../../../utils/api";
 import DrawCards from "./DrawCards";
@@ -10,21 +10,24 @@ function DeckAndCards() {
   // const [cards,setCards]=useState([]);
   const { deckId } = useParams();
   const { url } = useRouteMatch();
-  const history=useHistory();
+  const history = useHistory();
 
   useEffect(() => {
-      const abortController = new AbortController();
-      readDeck(deckId, abortController.signal).then(setDeck).catch((e)=>console.log(e.message));
-      return () => abortController.abort();
-    
+    const abortController = new AbortController();
+    readDeck(deckId, abortController.signal)
+      .then(setDeck)
+      .catch((e) => console.log(e.message));
+    return () => abortController.abort();
   }, [deckId]);
   const handleDeckDelete = () => {
     if (
-      window.confirm("Delete This Deck?\n\nDeck will be deleted permanently")
+      window.confirm(
+        "Delete This Deck?\n\nThis deck will be deleted permanently. Select OK to proceed."
+      )
     ) {
-      deleteDeck(deckId).then(()=>{
-          history.push("/");
-        });
+      deleteDeck(deckId).then(() => {
+        history.push("/");
+      });
     }
   };
 
@@ -47,13 +50,18 @@ function DeckAndCards() {
         <Link to={`${url}/study`} className="btn btn-primary  mr-2">
           <span className="oi oi-book"></span> Study
         </Link>
-        <Link to={`${url}/cards/new`} type="button" className="btn btn-primary  mr-2">
+        <Link
+          to={`${url}/cards/new`}
+          type="button"
+          className="btn btn-success  mr-2"
+        >
           <span className="oi oi-plus"></span> Add Cards
         </Link>
         <button
           type="button"
           onClick={handleDeckDelete}
-          className="btn btn-danger  mr-2 float-right">
+          className="btn btn-danger  mr-2 float-right"
+        >
           <span className="oi oi-trash "></span>
         </button>
       </div>

@@ -1,4 +1,4 @@
-import  React, {useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createDeck } from "../../../utils/api";
 import NavigationBar from "../../NavigationBar";
@@ -25,16 +25,13 @@ function CreateDeck() {
       name: deckName,
       description: deckDescription,
     };
-    /*Used setTimer just to test the Abort functionality and to see if it will be aborted
-      if the user make another submit attemp */
-    // setTimeout(() => {
-    //   createDeck(deck, newAbortController.signal);
-    // }, 2000);
-    createDeck(deck, newAbortController.signal).then(({id})=>history.push("/decks/"+id));
+    createDeck(deck, newAbortController.signal).then(({ id }) =>
+      history.push("/decks/" + id)
+    );
   };
   return (
     <div>
-      <NavigationBar navItems={["Creat Deck"]} />
+      <NavigationBar navItems={["Create Deck"]} />
       <h2>Create Deck</h2>
 
       <form onSubmit={handleSubmit}>
@@ -46,14 +43,13 @@ function CreateDeck() {
             id="deckName"
             aria-describedby="newDeck"
             placeholder="Deck Name"
-            required
             value={deckName}
             onChange={({ target: { value } }) => {
               setDeckName(value);
             }}
           />
           <small id="newDeck" className="form-text text-muted">
-            This field is requuired
+            This field is required.
           </small>
         </div>
         <div className="form-group">
@@ -61,19 +57,18 @@ function CreateDeck() {
           <textarea
             className="form-control"
             id="description"
-            placeholder="Brief description of the deck"
+            placeholder="Provide a brief description of your deck."
             rows="3"
-            required
             value={deckDescription}
             onChange={({ target: { value } }) => {
               setDeckDescription(value);
             }}
           />
         </div>
-        <button type="reset" className="btn btn-dark mr-2">
+        <button type="reset" className="btn btn-danger mr-2">
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-success">
           Submit
         </button>
       </form>
